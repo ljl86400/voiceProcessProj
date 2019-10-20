@@ -14,7 +14,7 @@ if(size(rowData,2) >= 2)
 end
 
 % frame
-soundCardBufferData = buffer(rowData,soundCardBufferDataFramesLen,0);
+soundCardBufferData = buffer(rowData,soundCardBufferDataFramesLen,0,'nodelay');
 soundCardBufferDataFramesNum = size(soundCardBufferData,2);
 
 rateOfProcess = 0;
