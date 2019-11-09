@@ -20,6 +20,7 @@ soundCardBufferDataFramesNum = size(soundCardBufferData,2);
 
 rateOfProcess = 1;
 rebufferData = zeros(320,1);
+win = hamming(320);
 fsProcess = 16000;
 showWaitBar = waitbar(rateOfProcess,'rate of process');
 while(rateOfProcess <= soundCardBufferDataFramesNum)
@@ -31,10 +32,12 @@ while(rateOfProcess <= soundCardBufferDataFramesNum)
         curTrunkResampleData = ...
             resample(soundCardBufferData(:,rateOfProcess),1,fs/fsProcess);
     end
-    % overlap reBuffer
+    % overlap reBuffer & window
     rebufferData(1:end/2) = rebufferData(end/2 + 1:end);
     rebufferData(end/2 + 1:end) = curTrunkResampleData;
-    % De-direct current
+    rebufferDataWin = rebufferData.*win;
+    % Detrend
+    detrendData = polydetrend(rebufferDataWin,fsProcess);
     % filter
     
     
