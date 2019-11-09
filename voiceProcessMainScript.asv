@@ -28,11 +28,11 @@ while(rateOfProcess <= soundCardBufferDataFramesNum)
     % D:\matlab2017a\work\Examples\forSomeTest
     if(16000 ~= fs)
         curTrunkResampleData = ...
-            resample(soundCardBufferData(:,rateOfProcess),1,3);
+            resample(soundCardBufferData(:,rateOfProcess),1,fs/16000);
     end
     % overlap reBuffer
     rebufferData(1:end/2) = rebufferData(end/2 + 1:end);
-    rebufferData() = curTrunkResampleData;
+    rebufferData(end/2 + 1:end) = curTrunkResampleData;
     % De-direct current
     % filter
     
