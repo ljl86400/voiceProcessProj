@@ -1,19 +1,24 @@
-function [NoiseFlag, SpeechFlag, NoiseCounter, Dist]=vad(signal,noise,NoiseCounter,NoiseMargin,Hangover)
+function [NoiseFlag, SpeechFlag, NoiseCounter, Dist]=...
+    vad(signal,noise,NoiseCounter,NoiseMargin,Hangover)
 
-%[NOISEFLAG, SPEECHFLAG, NOISECOUNTER, DIST]=vad(SIGNAL,NOISE,NOISECOUNTER,NOISEMARGIN,HANGOVER)
-%Spectral Distance Voice Activity Detector
-%SIGNAL is the the current frames magnitude spectrum which is to labeld as
-%noise or speech, NOISE is noise magnitude spectrum template (estimation),
-%NOISECOUNTER is the number of imediate previous noise frames, NOISEMARGIN
-%(default 3)is the spectral distance threshold. HANGOVER ( default 8 )is
-%the number of noise segments after which the SPEECHFLAG is reset (goes to
-%zero). NOISEFLAG is set to one if the the segment is labeld as noise
-%NOISECOUNTER returns the number of previous noise segments, this value is
-%reset (to zero) whenever a speech segment is detected. DIST is the
-%spectral distance. 
-%Saeed Vaseghi
-%edited by Esfandiar Zavarehei
-%Sep-04
+% [NOISEFLAG, SPEECHFLAG, NOISECOUNTER, DIST]=...
+%   vad(SIGNAL,NOISE,NOISECOUNTER,NOISEMARGIN,HANGOVER)
+% Spectral Distance Voice Activity Detector
+% SIGNAL is the the current frames magnitude spectrum which is to labeld as
+% noise or speech, 
+% NOISE is noise magnitude spectrum template (estimation),
+% NOISECOUNTER is the number of imediate previous noise frames, 
+% NOISEMARGIN
+% (default 3)is the spectral distance threshold. 
+% HANGOVER ( default 8 )is the number of noise segments after which the SPEECHFLAG is reset (goes to
+% zero). 
+% NOISEFLAG is set to one if the the segment is labeld as noise
+% NOISECOUNTER returns the number of previous noise segments, this value is
+% reset (to zero) whenever a speech segment is detected. DIST is the
+% spectral distance. 
+% Saeed Vaseghi
+% edited by Esfandiar Zavarehei
+% Sep-04
 
 if nargin<4
     NoiseMargin=3;
